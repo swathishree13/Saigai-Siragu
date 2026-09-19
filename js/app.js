@@ -16,11 +16,13 @@
   let transcript = [];    // [{time, text}]
   let captionSize = 1.5;  // rem
   let userStoppedMic = false;
+  let micPermissionState = 'unknown';
+  let micStartInFlight = false;
   let uiLanguage = 'en';
 
   const uiTranslations = {
     en: {
-      brandName: 'Saigai Seeragu', pageTitle: 'Saigai Seeragu — Present with live captions', uiLanguage: 'Interface language',
+      brandName: 'Saigai Seeragu', pageTitle: 'Saigai Seeragu — Present with live captions', uiLanguage: 'Interface language', aboutTitle: 'About Saigai Seeragu', aboutText: 'Saigai Seeragu turns any PDF or PowerPoint into a full-screen presentation with live captions, helping deaf and hard-of-hearing students follow every word.', micPermissionTitle: 'Microphone permission', micPermissionText: 'Allow microphone access when you start captions. Audio stays in your browser.', allowMicrophone: 'Allow microphone',
       skipUpload: 'Skip to upload', captionLanguage: 'Caption language', eyebrow: 'ACCESSIBLE PRESENTING',
       heroTitle: 'Every slide, heard and read.', heroSub: "சைகைசிறகு turns any PDF or PowerPoint into a full-screen presentation with live, real-time captions — so deaf and hard-of-hearing students can follow along with what's being said, word for word.", uploadDeck: 'Upload a deck', exportPdf: 'Export as PDF',
       presentFullscreen: 'Present full-screen', startLiveCaptions: 'Start live captions', choosePdf: 'Choose a presentation PDF',
@@ -34,7 +36,7 @@
       runsInBrowser: 'Runs entirely in your browser. No files are uploaded anywhere.', featureExport: 'Export PowerPoint or Canva as PDF first. Slides are rendered in your browser.', featurePresent: 'Open a distraction-free stage with clean navigation and captions.', featureCaptions: 'Your words appear on screen in real time while you talk.', accessibilityTitle: 'Built around one need: keep up with every word.', browserNote: 'Live captions work best in Chrome and Edge. The presentation and slide viewer work everywhere.'
     },
     ta: {
-      brandName: 'சைகைசிறகு', pageTitle: 'சைகைசிறகு — நேரடி தலைப்புகளுடன் வழங்கவும்', uiLanguage: 'இடைமுக மொழி',
+      brandName: 'சைகைசிறகு', pageTitle: 'சைகைசிறகு — நேரடி தலைப்புகளுடன் வழங்கவும்', uiLanguage: 'இடைமுக மொழி', aboutTitle: 'சைகைசிறகு பற்றி', aboutText: 'சைகைசிறகு PDF அல்லது PowerPoint வழங்கலை முழுத்திரை நேரடி தலைப்புகளுடன் காட்டி, கேட்கும் திறன் குறைபாடு உள்ள மாணவர்கள் ஒவ்வொரு வார்த்தையையும் பின்தொடர உதவுகிறது.', micPermissionTitle: 'மைக்ரோஃபோன் அனுமதி', micPermissionText: 'தலைப்புகளைத் தொடங்கும்போது மைக்ரோஃபோன் அனுமதியை வழங்கவும். ஒலி உங்கள் உலாவியிலேயே இருக்கும்.', allowMicrophone: 'மைக்ரோஃபோனை அனுமதிக்கவும்',
       skipUpload: 'பதிவேற்றத்திற்குச் செல்லவும்', captionLanguage: 'தலைப்பு மொழி', eyebrow: 'அணுகக்கூடிய வழங்கல்',
       heroTitle: 'ஒவ்வொரு ஸ்லைடும் கேட்கவும் படிக்கவும்.', uploadDeck: 'வழங்கலைப் பதிவேற்றவும்', exportPdf: 'PDF ஆக ஏற்றுமதி',
       presentFullscreen: 'முழுத்திரையில் வழங்கவும்', startLiveCaptions: 'நேரடி தலைப்புகளைத் தொடங்கவும்', choosePdf: 'வழங்கல் PDF-ஐத் தேர்ந்தெடுக்கவும்',
@@ -48,7 +50,7 @@
       runsInBrowser: 'அனைத்தும் உங்கள் உலாவியில் இயங்குகிறது. கோப்புகள் எங்கும் பதிவேற்றப்படாது.', heroSub: 'சைகைசிறகு PDF அல்லது PowerPoint வழங்கல்களை நேரடி தலைப்புகளுடன் முழுத்திரையில் காட்டுகிறது — கேட்கும் திறன் குறைபாடு உள்ள மாணவர்கள் ஒவ்வொரு வார்த்தையையும் பின்தொடரலாம்.', featureExport: 'PDF அல்லது PowerPoint கோப்பைத் தேர்ந்தெடுக்கவும். ஸ்லைடுகள் உலாவியில் காட்டப்படும்.', featurePresent: 'தெளிவான வழிசெலுத்தல் மற்றும் தலைப்புகளுடன் கவனச்சிதறல் இல்லாத காட்சியைத் திறக்கவும்.', featureCaptions: 'நீங்கள் பேசும்போது உங்கள் வார்த்தைகள் திரையில் நிகழ்நேரத்தில் தோன்றும்.', accessibilityTitle: 'ஒவ்வொரு வார்த்தையையும் பின்தொடர்வதே எங்கள் நோக்கம்.', browserNote: 'நேரடி தலைப்புகள் Chrome மற்றும் Edge-ல் சிறப்பாக இயங்கும். வழங்கல் எல்லா உலாவிகளிலும் இயங்கும்.'
     },
     hi: {
-      brandName: 'Saigai Seeragu', pageTitle: 'Saigai Seeragu — लाइव कैप्शन के साथ प्रस्तुत करें', uiLanguage: 'इंटरफ़ेस भाषा',
+      brandName: 'Saigai Seeragu', pageTitle: 'Saigai Seeragu — लाइव कैप्शन के साथ प्रस्तुत करें', uiLanguage: 'इंटरफ़ेस भाषा', aboutTitle: 'Saigai Seeragu के बारे में', aboutText: 'Saigai Seeragu PDF या PowerPoint को लाइव कैप्शन वाली पूर्ण स्क्रीन प्रस्तुति में बदलता है, ताकि सुनने में कठिनाई वाले छात्र हर शब्द समझ सकें।', micPermissionTitle: 'माइक्रोफ़ोन अनुमति', micPermissionText: 'कैप्शन शुरू करते समय माइक्रोफ़ोन की अनुमति दें। ऑडियो आपके ब्राउज़र में रहता है।', allowMicrophone: 'माइक्रोफ़ोन की अनुमति दें',
       skipUpload: 'अपलोड पर जाएं', captionLanguage: 'कैप्शन भाषा', eyebrow: 'सुलभ प्रस्तुति',
       heroTitle: 'हर स्लाइड सुनें और पढ़ें।', uploadDeck: 'प्रस्तुति अपलोड करें', exportPdf: 'PDF के रूप में निर्यात',
       presentFullscreen: 'पूर्ण स्क्रीन में प्रस्तुत करें', startLiveCaptions: 'लाइव कैप्शन शुरू करें', choosePdf: 'प्रस्तुति PDF चुनें',
@@ -87,6 +89,7 @@
   const presentNext = $('present-next');
   const exitPresentBtn = $('exit-present-btn');
   const micBtn = $('mic-btn');
+  const permissionMicBtn = $('permission-mic-btn');
   const micBtnLabel = $('mic-btn-label');
   const captionText = $('caption-text');
   const langSelect = $('lang-select');
@@ -97,7 +100,7 @@
   const transcriptBody = $('transcript-body');
   const copyTranscriptBtn = $('copy-transcript-btn');
   const themeToggle = $('theme-toggle');
-  const headerLangSelect = $('header-lang-select');
+  const headerLangToggle = $('header-lang-toggle');
   const workspaceMicBtn = $('workspace-mic-btn');
   const workspaceMicBtnLabel = $('workspace-mic-btn-label');
   const workspaceLangSelect = $('workspace-lang-select');
@@ -127,6 +130,11 @@
     return uiTranslations[uiLanguage][key] || uiTranslations.en[key] || key;
   }
 
+  function updateUiLanguageToggle() {
+    headerLangToggle.textContent = uiLanguage === 'ta' ? 'English' : 'தமிழ்';
+    headerLangToggle.setAttribute('aria-label', uiLanguage === 'ta' ? 'Switch to English' : 'தமிழ் மொழிக்கு மாற்றவும்');
+  }
+
   function applyTranslations() {
     const text = (selector, value) => {
       const element = document.querySelector(selector);
@@ -134,6 +142,11 @@
     };
     text('.skip-link', 'skipUpload');
     text('.brand-name', 'brandName');
+    text('#about-title', 'aboutTitle');
+    text('#about-text', 'aboutText');
+    text('#mic-permission-title', 'micPermissionTitle');
+    text('#mic-permission-text', 'micPermissionText');
+    text('#permission-mic-btn', 'allowMicrophone');
     text('.eyebrow', 'eyebrow');
     document.querySelector('.hero h1').innerHTML = uiLanguage === 'en'
       ? 'Every slide, heard <em>and</em> read.' : t('heroTitle');
@@ -162,6 +175,7 @@
     });
     const uiLanguageLabel = document.querySelector('.header-lang-wrap .sr-only');
     if (uiLanguageLabel) uiLanguageLabel.textContent = t('uiLanguage');
+    updateUiLanguageToggle();
     document.title = t('pageTitle');
   }
 
@@ -456,12 +470,14 @@
     langCode = value;
     langSelect.value = value;
     workspaceLangSelect.value = value;
-    if (micOn) { stopMic(); startMic(); }
+    if (micOn) {
+      stopMic();
+      startMic();
+    }
   }
 
   function setUiLanguage(value) {
     uiLanguage = value === 'ta' ? 'ta' : 'en';
-    headerLangSelect.value = uiLanguage;
     applyTranslations();
   }
 
@@ -469,8 +485,8 @@
     setLanguage(langSelect.value);
   });
 
-  headerLangSelect.addEventListener('change', () => {
-    setUiLanguage(headerLangSelect.value);
+  headerLangToggle.addEventListener('click', () => {
+    setUiLanguage(uiLanguage === 'ta' ? 'en' : 'ta');
   });
 
   workspaceLangSelect.addEventListener('change', () => {
@@ -479,10 +495,19 @@
 
   micBtn.addEventListener('click', toggleMic);
   workspaceMicBtn.addEventListener('click', toggleMic);
+  permissionMicBtn.addEventListener('click', () => {
+    if (!micOn) startMic();
+  });
 
   function setCaptionText(text) {
-    captionText.textContent = text;
-    workspaceCaptionText.textContent = text;
+    const displayText = formatCaptionText(text);
+    captionText.textContent = displayText;
+    workspaceCaptionText.textContent = displayText;
+  }
+
+  function formatCaptionText(text) {
+    // Keep code-switched Tamil and English exactly as recognized; never translate it.
+    return String(text || '').trim();
   }
 
   function setMicUI(active) {
@@ -497,9 +522,34 @@
     else startMic();
   }
 
-  function startMic() {
+  async function requestMicrophonePermission() {
+    if (micPermissionState === 'granted') return true;
+    if (micPermissionState === 'denied') return false;
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+      micPermissionState = 'granted';
+      return true;
+    }
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      stream.getTracks().forEach(track => track.stop());
+      micPermissionState = 'granted';
+      return true;
+    } catch {
+      micPermissionState = 'denied';
+      return false;
+    }
+  }
+
+  async function startMic() {
+    if (micOn || micStartInFlight) return;
     if (!SpeechRecognitionCtor) {
       setCaptionText(t('unsupported'));
+      return;
+    }
+    micStartInFlight = true;
+    if (!await requestMicrophonePermission()) {
+      micStartInFlight = false;
+      setCaptionText(t('micBlocked'));
       return;
     }
     userStoppedMic = false;
@@ -512,11 +562,11 @@
       let interim = '';
       for (let i = e.resultIndex; i < e.results.length; i++) {
         const chunk = e.results[i][0].transcript;
-        if (e.results[i].isFinal) addTranscriptLine(chunk.trim());
+        if (e.results[i].isFinal) addTranscriptLine(formatCaptionText(chunk));
         else interim += chunk;
       }
       const lastFinal = transcript.length ? transcript[transcript.length - 1].text : '';
-      setCaptionText((interim || lastFinal || '\u2026').trim());
+      setCaptionText(interim || lastFinal || '\u2026');
     };
 
     recognizer.onerror = (e) => {
@@ -541,6 +591,7 @@
     } catch {
       setCaptionText(t('micFailed'));
     }
+    micStartInFlight = false;
   }
 
   function stopMic() {

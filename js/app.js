@@ -34,7 +34,7 @@
       runsInBrowser: 'Runs entirely in your browser. No files are uploaded anywhere.', featureExport: 'Export PowerPoint or Canva as PDF first. Slides are rendered in your browser.', featurePresent: 'Open a distraction-free stage with clean navigation and captions.', featureCaptions: 'Your words appear on screen in real time while you talk.', accessibilityTitle: 'Built around one need: keep up with every word.', browserNote: 'Live captions work best in Chrome and Edge. The presentation and slide viewer work everywhere.'
     },
     ta: {
-      brandName: 'Saigai Seeragu', pageTitle: 'Saigai Seeragu — நேரடி தலைப்புகளுடன் வழங்கவும்',
+      brandName: 'சைகைசிறகு', pageTitle: 'சைகைசிறகு — நேரடி தலைப்புகளுடன் வழங்கவும்',
       skipUpload: 'பதிவேற்றத்திற்குச் செல்லவும்', captionLanguage: 'தலைப்பு மொழி', eyebrow: 'அணுகக்கூடிய வழங்கல்',
       heroTitle: 'ஒவ்வொரு ஸ்லைடும் கேட்கவும் படிக்கவும்.', uploadDeck: 'வழங்கலைப் பதிவேற்றவும்', exportPdf: 'PDF ஆக ஏற்றுமதி',
       presentFullscreen: 'முழுத்திரையில் வழங்கவும்', startLiveCaptions: 'நேரடி தலைப்புகளைத் தொடங்கவும்', choosePdf: 'வழங்கல் PDF-ஐத் தேர்ந்தெடுக்கவும்',

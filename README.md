@@ -22,17 +22,7 @@ ClearStage renders PDFs with PDF.js and PPTX files with the browser-based `pptx-
 
 No installation needed — it's static HTML/CSS/JS.
 
-1. Install [LibreOffice](https://www.libreoffice.org/download/download/) and make sure `soffice` is available on your PATH.
-2. Start the included Python server:
-   ```bash
-   cd clearstage
-   py server.py
-   ```
-3. Visit `http://127.0.0.1:8000`. Uploading a PPTX now sends it only to this local server for conversion; no file leaves your computer.
-
-If port 8000 is already in use, start on another port with `$env:CLEARSTAGE_PORT=8001; py server.py`, then open `http://127.0.0.1:8001`.
-
-Opening `index.html` directly still supports PDF files, but accurate PPTX rendering requires `py server.py`.
+Open `index.html` directly, or deploy the folder to Vercel or another static host. PDF and PPTX files are processed locally in the browser.
 
 ### Vercel deployment
 
@@ -53,7 +43,6 @@ clearstage/
 │   └── styles.css    # Design tokens, layout, present-mode styling
 ├── js/
 │   └── app.js         # File loading, presentation mode, captions
-├── server.py          # Local PPTX-to-PDF conversion endpoint
 └── README.md
 ```
 

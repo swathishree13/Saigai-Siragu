@@ -2,15 +2,15 @@
 
 A classy, professional presentation site with one purpose: let anyone upload a **PDF or PowerPoint (.pptx)**, present it full-screen, and show **live speech-to-text captions** while they talk — built for deaf, hard-of-hearing, and mute students to follow along.
 
-PDF files can run entirely in the browser. PPTX files use the included local Python server so LibreOffice can render the deck faithfully before presentation.
+PDF and PPTX files now render directly in the browser. PPTX fidelity depends on the browser renderer and installed fonts.
 
 ## Features
 
 ### Reliable slide rendering
 
-ClearStage renders PDFs pixel-perfect with PDF.js. When run through `server.py`, PPTX files are converted by LibreOffice first, preserving slide dimensions, fonts, artwork, transparency, fills, and element placement much more faithfully than browser-side PPTX parsing.
+ClearStage renders PDFs with PDF.js and PPTX files with the browser-based `pptx-preview` renderer. This keeps the Vercel deployment fully self-contained and requires no Python backend.
 
-- **Upload PDF or PPTX** — drag-and-drop or click to browse. PDFs render pixel-perfect via PDF.js; PPTX files are converted locally by Python and LibreOffice before entering the same PDF renderer.
+- **Upload PDF or PPTX** — drag-and-drop or click to browse. PDFs render via PDF.js; PPTX files are parsed and rendered locally in the browser.
 - **Slide rail** — thumbnail/list navigation of every slide.
 - **Present button** — opens a distraction-free, full-screen stage with slide navigation (buttons, arrow keys, spacebar).
 - **Live captions** — uses the browser's built-in Web Speech API to transcribe the presenter's microphone in real time, in large high-contrast text.
@@ -36,17 +36,7 @@ Opening `index.html` directly still supports PDF files, but accurate PPTX render
 
 ### Vercel deployment
 
-Vercel can host the static interface, but it does not run `server.py` or LibreOffice. To support PPTX online:
-
-1. Deploy this repository's `Dockerfile` to a Docker host such as Render, Railway, or Fly.io.
-2. Set the backend environment variable `CLEARSTAGE_ALLOWED_ORIGIN` to your Vercel URL, for example `https://saigai-siragu.vercel.app`.
-3. Copy the backend's public HTTPS URL into `js/renderer-config.js`:
-   ```javascript
-   window.CLEARSTAGE_RENDERER_URL = 'https://your-pptx-backend.example.com';
-   ```
-4. Commit and push `js/renderer-config.js`, then redeploy Vercel.
-
-The browser sends PPTX files to that backend, where LibreOffice converts them to PDF. The files are processed temporarily and are not stored by the included server. Keep the backend URL on HTTPS and restrict `CLEARSTAGE_ALLOWED_ORIGIN` to your Vercel domain.
+The frontend, PDF renderer, and browser-based PPTX renderer all work from the static Vercel deployment. No Python server, Docker container, LibreOffice installation, or backend URL is required.
 
 ## Browser support
 
@@ -69,7 +59,7 @@ clearstage/
 
 ## Notes on PPTX rendering
 
-Canva does not provide a local browser rendering engine for uploaded PowerPoint files. The included Python endpoint uses LibreOffice's presentation renderer, then sends the resulting PDF pages through the same pixel-accurate path used for PDF uploads. Exact font matching still depends on the fonts installed on the computer doing the conversion. Old binary `.ppt` files should be saved as `.pptx` first.
+The browser renderer supports modern `.pptx` files and keeps the uploaded file local to the browser. Some advanced PowerPoint features, fonts, transparency, and complex effects may differ from PowerPoint or Canva. Old binary `.ppt` files should be saved as `.pptx` first.
 
 ## Customizing
 
@@ -77,4 +67,4 @@ Canva does not provide a local browser rendering engine for uploaded PowerPoint 
 - Add more caption languages by adding `<option>` values to `#lang-select` in `index.html` (use any [BCP-47](https://en.wikipedia.org/wiki/IETF_language_tag) code your browser's speech engine supports).
 
 ---
-Built with vanilla HTML/CSS/JS, [PDF.js](https://mozilla.github.io/pdf.js/), and Python's standard library.
+Built with vanilla HTML/CSS/JS, [PDF.js](https://mozilla.github.io/pdf.js/), and [pptx-preview](https://www.npmjs.com/package/pptx-preview).

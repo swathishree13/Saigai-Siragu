@@ -13,8 +13,9 @@ from pathlib import Path
 from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parent
-HOST = "127.0.0.1"
-PORT = int(os.environ.get("CLEARSTAGE_PORT", "8000"))
+HOST = os.environ.get("HOST", "0.0.0.0")
+PORT = int(os.environ.get("PORT", os.environ.get("CLEARSTAGE_PORT", "8000")))
+ALLOWED_ORIGIN = os.environ.get("CLEARSTAGE_ALLOWED_ORIGIN", "*")
 
 
 def find_converter():
@@ -32,8 +33,21 @@ class ClearStageHandler(http.server.SimpleHTTPRequestHandler):
         super().__init__(*args, directory=str(ROOT), **kwargs)
 
     def end_headers(self):
+        request_origin = self.headers.get("Origin")
+        if ALLOWED_ORIGIN == "*" or request_origin == ALLOWED_ORIGIN:
+            self.send_header("Access-Control-Allow-Origin", ALLOWED_ORIGIN if ALLOWED_ORIGIN != "*" else "*")
+            self.send_header("Vary", "Origin")
         self.send_header("Cache-Control", "no-store")
         super().end_headers()
+
+    def do_OPTIONS(self):
+        if urlparse(self.path).path != "/api/render-pptx":
+            self.send_error(404, "Endpoint not found")
+            return
+        self.send_response(204)
+        self.send_header("Access-Control-Allow-Methods", "POST, OPTIONS")
+        self.send_header("Access-Control-Allow-Headers", "Content-Type")
+        self.end_headers()
 
     def do_POST(self):
         if urlparse(self.path).path != "/api/render-pptx":

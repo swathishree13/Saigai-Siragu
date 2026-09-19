@@ -246,19 +246,26 @@
     if (!['http:', 'https:'].includes(window.location.protocol)) {
       throw new Error('Run "py server.py" and open the app through its http://127.0.0.1 server URL to render PPTX files accurately.');
     }
+    const configuredRenderer = (window.CLEARSTAGE_RENDERER_URL || '').trim().replace(/\/$/, '');
+    const rendererOrigin = configuredRenderer || window.location.origin;
+    if (!configuredRenderer && window.location.hostname.endsWith('vercel.app')) {
+      throw new Error('Configure your online PPTX renderer URL in js/renderer-config.js, or upload a PDF.');
+    }
     const form = new FormData();
     form.append('file', file, file.name);
     let response;
     try {
-      response = await fetch(new URL('/api/render-pptx', window.location.origin), {
+      response = await fetch(new URL('/api/render-pptx', rendererOrigin), {
         method: 'POST',
         body: form
       });
     } catch {
-      throw new Error(`Cannot reach the Python renderer at ${window.location.origin}. Start "py server.py", then reload this same server URL.`);
+      throw new Error(`Cannot reach the PPTX renderer at ${rendererOrigin}. Check that the online backend is running.`);
     }
     if (!response.ok) {
-      let message = 'The Python PPTX renderer could not process this file.';
+      let message = response.status === 404
+        ? 'PPTX rendering is not configured on this deployment. Upload a PDF, or run the app locally with "py server.py" for PPTX support.'
+        : 'The Python PPTX renderer could not process this file.';
       try {
         const details = await response.json();
         if (details.error) message = details.error;

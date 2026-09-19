@@ -34,6 +34,20 @@ If port 8000 is already in use, start on another port with `$env:CLEARSTAGE_PORT
 
 Opening `index.html` directly still supports PDF files, but accurate PPTX rendering requires `py server.py`.
 
+### Vercel deployment
+
+Vercel can host the static interface, but it does not run `server.py` or LibreOffice. To support PPTX online:
+
+1. Deploy this repository's `Dockerfile` to a Docker host such as Render, Railway, or Fly.io.
+2. Set the backend environment variable `CLEARSTAGE_ALLOWED_ORIGIN` to your Vercel URL, for example `https://saigai-siragu.vercel.app`.
+3. Copy the backend's public HTTPS URL into `js/renderer-config.js`:
+   ```javascript
+   window.CLEARSTAGE_RENDERER_URL = 'https://your-pptx-backend.example.com';
+   ```
+4. Commit and push `js/renderer-config.js`, then redeploy Vercel.
+
+The browser sends PPTX files to that backend, where LibreOffice converts them to PDF. The files are processed temporarily and are not stored by the included server. Keep the backend URL on HTTPS and restrict `CLEARSTAGE_ALLOWED_ORIGIN` to your Vercel domain.
+
 ## Browser support
 
 - Slide upload, viewing, and presenting work in **any modern browser**.

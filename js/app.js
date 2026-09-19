@@ -131,7 +131,7 @@
   }
 
   function updateUiLanguageToggle() {
-    headerLangToggle.textContent = uiLanguage === 'ta' ? 'English' : 'தமிழ்';
+    headerLangToggle.textContent = uiLanguage === 'ta' ? 'Eng' : 'Tam';
     headerLangToggle.setAttribute('aria-label', uiLanguage === 'ta' ? 'Switch to English' : 'தமிழ் மொழிக்கு மாற்றவும்');
   }
 

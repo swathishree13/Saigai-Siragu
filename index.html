@@ -88,11 +88,11 @@
   <!-- ============ UPLOAD ============ -->
   <section id="upload-section" class="upload-section">
     <div class="wrap">
-      <div id="dropzone" class="dropzone" tabindex="0" role="button" aria-label="Upload a presentation PDF">
+      <div id="dropzone" class="dropzone" tabindex="0" role="button" aria-label="Upload a PDF or PowerPoint file">
         <svg viewBox="0 0 24 24" width="34" height="34" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M12 15V5M7 10l5-5 5 5"/><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" d="M4 16v2.5A1.5 1.5 0 0 0 5.5 20h13a1.5 1.5 0 0 0 1.5-1.5V16"/></svg>
         <p class="dz-title">Choose a presentation PDF</p>
-        <p class="dz-sub">Export your PowerPoint or Canva presentation as a PDF first, then upload the <strong>.pdf</strong> file for the most accurate slide display.</p>
-        <input id="file-input" type="file" accept=".pdf,application/pdf" hidden />
+        <p class="dz-sub">Supports <strong>.pdf</strong> and <strong>.pptx</strong>. PowerPoint files are rendered directly in your browser.</p>
+        <input id="file-input" type="file" accept=".pdf,.pptx,application/pdf,application/vnd.openxmlformats-officedocument.presentationml.presentation" hidden />
       </div>
       <div id="upload-status" class="upload-status" role="status" aria-live="polite"></div>
     </div>
@@ -237,6 +237,7 @@
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://unpkg.com/pptx-preview@1.0.7/dist/pptx-preview.umd.js"></script>
 <script src="js/app.js?v=20260919"></script>
 </body>
 </html>

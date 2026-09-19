@@ -20,6 +20,7 @@
 
   const uiTranslations = {
     en: {
+      brandName: 'ClearStage', pageTitle: 'ClearStage — Present with live captions',
       skipUpload: 'Skip to upload', captionLanguage: 'Caption language', eyebrow: 'ACCESSIBLE PRESENTING',
       heroTitle: 'Every slide, heard and read.', heroSub: "சைகைசிறகு turns any PDF or PowerPoint into a full-screen presentation with live, real-time captions — so deaf and hard-of-hearing students can follow along with what's being said, word for word.", uploadDeck: 'Upload a deck', exportPdf: 'Export as PDF',
       presentFullscreen: 'Present full-screen', startLiveCaptions: 'Start live captions', choosePdf: 'Choose a presentation PDF',
@@ -33,6 +34,7 @@
       runsInBrowser: 'Runs entirely in your browser. No files are uploaded anywhere.', featureExport: 'Export PowerPoint or Canva as PDF first. Slides are rendered in your browser.', featurePresent: 'Open a distraction-free stage with clean navigation and captions.', featureCaptions: 'Your words appear on screen in real time while you talk.', accessibilityTitle: 'Built around one need: keep up with every word.', browserNote: 'Live captions work best in Chrome and Edge. The presentation and slide viewer work everywhere.'
     },
     ta: {
+      brandName: 'சைகைசிறகு', pageTitle: 'சைகைசிறகு — நேரடி தலைப்புகளுடன் வழங்கவும்',
       skipUpload: 'பதிவேற்றத்திற்குச் செல்லவும்', captionLanguage: 'தலைப்பு மொழி', eyebrow: 'அணுகக்கூடிய வழங்கல்',
       heroTitle: 'ஒவ்வொரு ஸ்லைடும் கேட்கவும் படிக்கவும்.', uploadDeck: 'வழங்கலைப் பதிவேற்றவும்', exportPdf: 'PDF ஆக ஏற்றுமதி',
       presentFullscreen: 'முழுத்திரையில் வழங்கவும்', startLiveCaptions: 'நேரடி தலைப்புகளைத் தொடங்கவும்', choosePdf: 'வழங்கல் PDF-ஐத் தேர்ந்தெடுக்கவும்',
@@ -46,6 +48,7 @@
       runsInBrowser: 'அனைத்தும் உங்கள் உலாவியில் இயங்குகிறது. கோப்புகள் எங்கும் பதிவேற்றப்படாது.', heroSub: 'சைகைசிறகு PDF அல்லது PowerPoint வழங்கல்களை நேரடி தலைப்புகளுடன் முழுத்திரையில் காட்டுகிறது — கேட்கும் திறன் குறைபாடு உள்ள மாணவர்கள் ஒவ்வொரு வார்த்தையையும் பின்தொடரலாம்.', featureExport: 'PDF அல்லது PowerPoint கோப்பைத் தேர்ந்தெடுக்கவும். ஸ்லைடுகள் உலாவியில் காட்டப்படும்.', featurePresent: 'தெளிவான வழிசெலுத்தல் மற்றும் தலைப்புகளுடன் கவனச்சிதறல் இல்லாத காட்சியைத் திறக்கவும்.', featureCaptions: 'நீங்கள் பேசும்போது உங்கள் வார்த்தைகள் திரையில் நிகழ்நேரத்தில் தோன்றும்.', accessibilityTitle: 'ஒவ்வொரு வார்த்தையையும் பின்தொடர்வதே எங்கள் நோக்கம்.', browserNote: 'நேரடி தலைப்புகள் Chrome மற்றும் Edge-ல் சிறப்பாக இயங்கும். வழங்கல் எல்லா உலாவிகளிலும் இயங்கும்.'
     },
     hi: {
+      brandName: 'क्लियरस्टेज', pageTitle: 'क्लियरस्टेज — लाइव कैप्शन के साथ प्रस्तुत करें',
       skipUpload: 'अपलोड पर जाएं', captionLanguage: 'कैप्शन भाषा', eyebrow: 'सुलभ प्रस्तुति',
       heroTitle: 'हर स्लाइड सुनें और पढ़ें।', uploadDeck: 'प्रस्तुति अपलोड करें', exportPdf: 'PDF के रूप में निर्यात',
       presentFullscreen: 'पूर्ण स्क्रीन में प्रस्तुत करें', startLiveCaptions: 'लाइव कैप्शन शुरू करें', choosePdf: 'प्रस्तुति PDF चुनें',
@@ -130,6 +133,7 @@
       if (element) element.textContent = t(value);
     };
     text('.skip-link', 'skipUpload');
+    text('.brand-name', 'brandName');
     text('.eyebrow', 'eyebrow');
     document.querySelector('.hero h1').innerHTML = uiLanguage === 'en'
       ? 'Every slide, heard <em>and</em> read.' : t('heroTitle');
@@ -156,7 +160,7 @@
     document.querySelectorAll('.sr-only').forEach(element => {
       if (element.textContent.trim() === 'Caption language') element.textContent = t('captionLanguage');
     });
-    document.title = `${uiLanguage === 'en' ? 'சைகைசிறகு' : uiLanguage === 'ta' ? 'சைகைசிறகு' : 'सைகைசிறகு'} — Present with live captions`;
+    document.title = t('pageTitle');
   }
 
   applyTranslations();

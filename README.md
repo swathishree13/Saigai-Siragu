@@ -1,16 +1,16 @@
 # ClearStage
 
-A classy, professional presentation site with one purpose: let anyone upload a **PDF or PowerPoint (.pptx)**, present it full-screen, and show **live speech-to-text captions** while they talk — built for deaf, hard-of-hearing, and mute students to follow along.
+A classy, professional presentation site with one purpose: let anyone upload a **PDF**, present it full-screen, and show **live speech-to-text captions** while they talk — built for deaf, hard-of-hearing, and mute students to follow along.
 
-PDF and PPTX files now render directly in the browser. PPTX fidelity depends on the browser renderer and installed fonts.
+PDF files render directly in the browser. Export PowerPoint or Canva presentations as PDF before uploading for the most accurate slide appearance.
 
 ## Features
 
 ### Reliable slide rendering
 
-ClearStage renders PDFs with PDF.js and PPTX files with the browser-based `pptx-preview` renderer. This keeps the Vercel deployment fully self-contained and requires no Python backend.
+ClearStage renders PDFs with PDF.js. This keeps the Vercel deployment fully self-contained and preserves the exported slide appearance.
 
-- **Upload PDF or PPTX** — drag-and-drop or click to browse. PDFs render via PDF.js; PPTX files are parsed and rendered locally in the browser.
+- **Upload PDF** — export your PowerPoint or Canva presentation as PDF, then drag-and-drop or click to browse.
 - **Slide rail** — thumbnail/list navigation of every slide.
 - **Present button** — opens a distraction-free, full-screen stage with slide navigation (buttons, arrow keys, spacebar).
 - **Live captions** — uses the browser's built-in Web Speech API to transcribe the presenter's microphone in real time, in large high-contrast text.
@@ -22,11 +22,11 @@ ClearStage renders PDFs with PDF.js and PPTX files with the browser-based `pptx-
 
 No installation needed — it's static HTML/CSS/JS.
 
-Open `index.html` directly, or deploy the folder to Vercel or another static host. PDF and PPTX files are processed locally in the browser.
+Open `index.html` directly, or deploy the folder to Vercel or another static host. PDF files are processed locally in the browser.
 
 ### Vercel deployment
 
-The frontend, PDF renderer, and browser-based PPTX renderer all work from the static Vercel deployment. No Python server, Docker container, LibreOffice installation, or backend URL is required.
+The frontend and PDF renderer work from the static Vercel deployment. No backend is required.
 
 ## Browser support
 
@@ -46,9 +46,9 @@ clearstage/
 └── README.md
 ```
 
-## Notes on PPTX rendering
+## Notes on slide fidelity
 
-The browser renderer supports modern `.pptx` files and keeps the uploaded file local to the browser. Some advanced PowerPoint features, fonts, transparency, and complex effects may differ from PowerPoint or Canva. Old binary `.ppt` files should be saved as `.pptx` first.
+Export PowerPoint or Canva presentations as PDF before uploading. PDF.js displays the exported pages consistently in the browser, including slide dimensions, fonts, images, fills, and transparency.
 
 ## Customizing
 
@@ -56,4 +56,4 @@ The browser renderer supports modern `.pptx` files and keeps the uploaded file l
 - Add more caption languages by adding `<option>` values to `#lang-select` in `index.html` (use any [BCP-47](https://en.wikipedia.org/wiki/IETF_language_tag) code your browser's speech engine supports).
 
 ---
-Built with vanilla HTML/CSS/JS, [PDF.js](https://mozilla.github.io/pdf.js/), and [pptx-preview](https://www.npmjs.com/package/pptx-preview).
+Built with vanilla HTML/CSS/JS and [PDF.js](https://mozilla.github.io/pdf.js/).

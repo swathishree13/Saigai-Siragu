@@ -25,12 +25,12 @@
       presentFullscreen: 'Present full-screen', startLiveCaptions: 'Start live captions', choosePdf: 'Choose a presentation PDF',
       removeFile: 'Remove file', present: 'Present ▸', startCaptions: 'Start captions', stopCaptions: 'Stop captions',
       captionWaiting: 'Captions will appear here once you press “Start captions.”', transcript: 'Transcript', copy: 'Copy',
-      slide: 'Slide', loaded: 'Loaded', reading: 'Reading', invalidFile: 'Please choose a PDF or PowerPoint (.pptx) file.',
+      slide: 'Slide', loaded: 'Loaded', reading: 'Reading', invalidFile: 'Please choose a PDF file. Export your PowerPoint or Canva presentation as PDF first.',
       noSlides: 'Couldn’t find any slide content in that file. Try exporting it to PDF instead.',
       unsupported: 'Live captions aren’t supported in this browser. Try Chrome or Edge.', listening: 'Listening…',
       micBlocked: 'Microphone access was blocked. Allow microphone permission and press Start captions again.',
       micFailed: 'Couldn’t start the microphone. Please try again.', copyFailed: 'Select & copy manually', copied: 'Copied',
-      runsInBrowser: 'Runs entirely in your browser. No files are uploaded anywhere.', featureExport: 'Drop in a PDF or PowerPoint file. Slides are rendered in your browser.', featurePresent: 'Open a distraction-free stage with clean navigation and captions.', featureCaptions: 'Your words appear on screen in real time while you talk.', accessibilityTitle: 'Built around one need: keep up with every word.', browserNote: 'Live captions work best in Chrome and Edge. The presentation and slide viewer work everywhere.'
+      runsInBrowser: 'Runs entirely in your browser. No files are uploaded anywhere.', featureExport: 'Export PowerPoint or Canva as PDF first. Slides are rendered in your browser.', featurePresent: 'Open a distraction-free stage with clean navigation and captions.', featureCaptions: 'Your words appear on screen in real time while you talk.', accessibilityTitle: 'Built around one need: keep up with every word.', browserNote: 'Live captions work best in Chrome and Edge. The presentation and slide viewer work everywhere.'
     },
     ta: {
       skipUpload: 'பதிவேற்றத்திற்குச் செல்லவும்', captionLanguage: 'தலைப்பு மொழி', eyebrow: 'அணுகக்கூடிய வழங்கல்',
@@ -38,7 +38,7 @@
       presentFullscreen: 'முழுத்திரையில் வழங்கவும்', startLiveCaptions: 'நேரடி தலைப்புகளைத் தொடங்கவும்', choosePdf: 'வழங்கல் PDF-ஐத் தேர்ந்தெடுக்கவும்',
       removeFile: 'கோப்பை அகற்றவும்', present: 'வழங்கவும் ▸', startCaptions: 'தலைப்புகளைத் தொடங்கவும்', stopCaptions: 'தலைப்புகளை நிறுத்தவும்',
       captionWaiting: '“தலைப்புகளைத் தொடங்கவும்” என்பதை அழுத்தியதும் தலைப்புகள் தோன்றும்.', transcript: 'மாற்றெழுத்து', copy: 'நகலெடு',
-      slide: 'ஸ்லைடு', loaded: 'ஏற்றப்பட்டது', reading: 'படிக்கிறது', invalidFile: 'PDF அல்லது PowerPoint (.pptx) கோப்பைத் தேர்ந்தெடுக்கவும்.',
+      slide: 'ஸ்லைடு', loaded: 'ஏற்றப்பட்டது', reading: 'படிக்கிறது', invalidFile: 'PDF கோப்பைத் தேர்ந்தெடுக்கவும். முதலில் PowerPoint அல்லது Canva வழங்கலை PDF ஆக ஏற்றுமதி செய்யவும்.',
       noSlides: 'இந்தக் கோப்பில் ஸ்லைடு உள்ளடக்கம் இல்லை. PDF ஆக ஏற்றுமதி செய்து முயற்சிக்கவும்.',
       unsupported: 'இந்த உலாவியில் நேரடி தலைப்புகள் ஆதரிக்கப்படவில்லை. Chrome அல்லது Edge-ஐ முயற்சிக்கவும்.', listening: 'கேட்கிறது…',
       micBlocked: 'மைக்ரோஃபோன் அனுமதி மறுக்கப்பட்டது. அனுமதியை வழங்கி மீண்டும் முயற்சிக்கவும்.',
@@ -51,7 +51,7 @@
       presentFullscreen: 'पूर्ण स्क्रीन में प्रस्तुत करें', startLiveCaptions: 'लाइव कैप्शन शुरू करें', choosePdf: 'प्रस्तुति PDF चुनें',
       removeFile: 'फ़ाइल हटाएं', present: 'प्रस्तुत करें ▸', startCaptions: 'कैप्शन शुरू करें', stopCaptions: 'कैप्शन रोकें',
       captionWaiting: '“कैप्शन शुरू करें” दबाने के बाद कैप्शन यहां दिखाई देंगे।', transcript: 'प्रतिलिपि', copy: 'कॉपी',
-      slide: 'स्लाइड', loaded: 'लोड हुआ', reading: 'पढ़ा जा रहा है', invalidFile: 'PDF या PowerPoint (.pptx) फ़ाइल चुनें।',
+      slide: 'स्लाइड', loaded: 'लोड हुआ', reading: 'पढ़ा जा रहा है', invalidFile: 'PDF फ़ाइल चुनें। पहले अपनी PowerPoint या Canva प्रस्तुति को PDF के रूप में निर्यात करें।',
       noSlides: 'इस फ़ाइल में स्लाइड सामग्री नहीं मिली। इसे PDF में निर्यात करके देखें।',
       unsupported: 'इस ब्राउज़र में लाइव कैप्शन समर्थित नहीं हैं। Chrome या Edge आज़माएं।', listening: 'सुन रहा है…',
       micBlocked: 'माइक्रोफ़ोन अनुमति अवरुद्ध है। अनुमति दें और फिर कैप्शन शुरू करें।',
@@ -198,15 +198,14 @@
     slides = [];
     currentIndex = 0;
 
-    if (ext !== 'pdf' && ext !== 'pptx') {
+    if (ext !== 'pdf') {
       setStatus(t('invalidFile'), true);
       return;
     }
 
     setStatus(`${t('reading')} ${file.name}\u2026`, false);
     try {
-      if (ext === 'pdf') await loadPDF(file);
-      else await loadPPTX(file);
+      await loadPDF(file);
 
       if (slides.length === 0) {
         setStatus(t('noSlides'), true);
@@ -240,18 +239,6 @@
       await page.render({ canvasContext: canvas.getContext('2d'), viewport }).promise;
       slides.push({ kind: 'image', src: canvas.toDataURL('image/png') });
     }
-  }
-
-  async function loadPPTX(file) {
-    if (!window.pptxPreview || typeof window.pptxPreview.init !== 'function') {
-      throw new Error('The browser PowerPoint viewer could not be loaded. Check your internet connection and try again.');
-    }
-    const renderBuffer = document.createElement('div');
-    const viewer = window.pptxPreview.init(renderBuffer, { width: 960, height: 540, mode: 'list' });
-    await viewer.preview(await file.arrayBuffer());
-    const renderedSlides = [...renderBuffer.querySelectorAll('.pptx-preview-slide-wrapper')];
-    if (!renderedSlides.length) throw new Error('No supported slides were found in this PowerPoint.');
-    renderedSlides.forEach(node => slides.push({ kind: 'pptx', node }));
   }
 
   // ---------- Slide list / preview ----------

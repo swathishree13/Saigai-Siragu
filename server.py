@@ -49,6 +49,18 @@ class ClearStageHandler(http.server.SimpleHTTPRequestHandler):
         self.send_header("Access-Control-Allow-Headers", "Content-Type")
         self.end_headers()
 
+    def do_GET(self):
+        path = urlparse(self.path).path
+        if path in {"/", "/health"}:
+            body = b"ClearStage PPTX renderer is running. Use POST /api/render-pptx to convert a .pptx file."
+            self.send_response(200)
+            self.send_header("Content-Type", "text/plain; charset=utf-8")
+            self.send_header("Content-Length", str(len(body)))
+            self.end_headers()
+            self.wfile.write(body)
+            return
+        super().do_GET()
+
     def do_POST(self):
         if urlparse(self.path).path != "/api/render-pptx":
             self.send_error(404, "Endpoint not found")
